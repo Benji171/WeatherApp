@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 // const api = {
@@ -7,6 +7,9 @@ import './App.css';
 // }
 
 function App() {
+
+  const [query, setQuery] = useState('');
+  const [weather, setWeather] = useState('');
 
   const dateBuilder = (d) => {
     let months= ["January","February","March","April","May","June","July",
@@ -38,7 +41,7 @@ function App() {
          <div className="date">{dateBuilder(new Date())}</div>
        </div>
 
-       <div>
+       <div className="weather-box">
          <div className="temp">15</div>
          <div className="weather">Sunny</div>
        </div>
