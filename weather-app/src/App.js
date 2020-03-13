@@ -1,29 +1,62 @@
 import React, { useState } from 'react';
 import './App.css';
 
-const api = {
+const weatherApi = {
   key: '4f202515b8b40e20a36d3096794eeaa3',
   base: 'https://api.openweathermap.org/data/2.5/'
+}
+
+const newaApi = {
+  key: '156880819301436db1e992e36ecc548e',
+  base: 'http://newsapi.org/v2/'
 }
 
 function App() {
 
   const [query, setQuery] = useState('');
   const [weather, setWeather] = useState('');
+  const [news, setNews] = useState([])
 
   const search = e => {
     if (e.key === "Enter") {
-      fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
-      .then(res => res.json())
-      .then(result => {
-        console.log(result);
-        setWeather(result);
-        setQuery('');
+      Promise.all([
+        fetch(`${weatherApi.base}weather?q=${query}&units=metric&APPID=${weatherApi.key}`).then(value => value.json()),
+        fetch(`${newaApi.base}everything?q=${query}&from=2020-02-13&sortBy=publishedAt&apiKey=${newaApi.key}`).then(value => value.json())
+      ]).then((res) => {
+          console.log(res);
+          setWeather(res[0]);
+          setNews(res[1]);
+          setQuery('');
       })
       .catch(err => { console.log(err) });
     }
     else {}
   }
+
+  console.log("Weather", weather);
+  console.log("News", news);
+
+  // const getNews = e => {
+  //   if (e.key === "Enter") {
+  //     fetch(`${newaApi.base}everything?q=${query}&from=2020-02-13&sortBy=publishedAt&apiKey=${newaApi.key}`)
+  //     .then(res => res.json())
+  //     .then(res => {
+  //       console.log("News Api", res);
+  //       setNews(res);
+  //     })
+  //     .catch(err => { console.log(err) });
+  //   }
+  //   else {}
+  // }
+
+  // useEffect(() => {
+  //   fetch(`${newaApi.base}everything?q=${query}&from=2020-02-13&sortBy=publishedAt&apiKey=${newaApi.key}`)
+  //   .then(res => res.json())
+  //   .then(res => {
+  //     console.log("News Api", res);
+  //     setNews(res);
+  //   })
+  // }, [weather])
 
   const dateBuilder = (d) => {
     let months= ["January","February","March","April","May","June","July",
@@ -63,9 +96,9 @@ function App() {
 
             <div className="weather-box">
               <div className="top-container">
-                <div className="hi-stats">H: {Math.round(weather.main.temp_max)}</div> 
+                <div className="hi-stats">H {Math.round(weather.main.temp_max)}</div> 
                 <div className="celcius">°C</div>
-                <div className="lo-stats">L: {Math.round(weather.main.temp_min)}</div>
+                <div className="lo-stats">L {Math.round(weather.main.temp_min)}</div>
               </div>
   
               <div className="coordinates">Lat: {Math.round(weather.coord.lat * 10) / 10} | Lon {Math.round(weather.coord.lon * 10) / 10}</div>
