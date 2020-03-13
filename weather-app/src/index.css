@@ -8,16 +8,22 @@ body {
   font-family: 'montseratt' ,sans-serif;
 }
 
-.app {
+.app-cold {
   background-image: url("./assets/cold-bg.jpg");
   background-size: cover;
   background-position: bottom;
-  transition: 0.4s ease-out;
+  transition: 0.2s ease-out;
+  transition: 0.2s ease-in;
 }
 
 .app-warm {
   background-image: url("./assets/warm-bg.jpg");
+  background-size: cover;
+  background-position: bottom;
+  transition: 0.2s ease-out;
+  transition: 0.2s ease-in;
 }
+
 
 main {
   min-height: 100vh;
@@ -65,6 +71,7 @@ main {
   font-weight: 500;
   text-align: center;
   text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
+  margin-top: 20px;
 }
 
 .location-box .date {
@@ -74,33 +81,161 @@ main {
   font-style: italic;
   text-align: center;
   text-shadow: 2px 2px rgba(50, 50, 70, 0.5);
+  padding-top: 10px;
+}
+
+.info-box {
+  text-align: center;
+  font-size: 50px;
+  text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
 }
 
 .weather-box {
-  text-align: center;
-}
-
-.weather-box .temp {
   position: relative;
+  height: 175px;
+  width: 40%;
   display: inline-block;
   margin: 30px auto;
   background-color: rgba(225, 225, 225, 0.2);
   border-radius: 16px;
+  text-align: center;
 
   padding: 15px, 25px;
 
   color: #fff;
-  font-size: 102;
-  font-weight: 900;
 
   text-shadow: 3px 6px rgba(50, 50, 70 0.5);
   text-align: center;
   box-shadow: 3px 6px rgba(0, 0, 0, 0.2);
 }
 
+
 .weather-box .weather {
   color: #fff;
-  font-size: 48px;
+  font-size: 40px;
   font-weight: 700;
   text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
+  text-align: center;
+}
+
+.celcius {
+  font-size: 20px;
+  padding-right: 8px;
+}
+
+.weather-desc {
+  position: absolute;
+  left: 50px;
+  bottom: 10px;
+}
+
+.temp {
+  color: #fff;
+  margin: auto;
+  margin-top: 4px;
+  width: 100px;
+  font-weight: 800;
+  text-shadow: 3px 6px rgba(50, 50, 70 0.5);
+  padding: 10px;
+  border: 4px solid #fff;
+  border-radius: 50px;
+}
+.bottom-container {
+  display: flex;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.wind-speed {
+  position: absolute;
+  left: 80px;
+  bottom: 60px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.feels-like {
+  position: absolute;
+  right: 80px;
+  bottom: 60px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+
+.hi-stats {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.lo-stats {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.humidity {
+  position: absolute;
+  left: 70px;
+  bottom: 95px;
+  font-size: 15px;
+  font-weight: 600;
+} 
+
+.coordinates {
+  position: absolute;
+  left: 30px;
+  bottom: 10px;
+  font-size: 12px;
+}
+
+
+.top-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+@media screen and (max-width: 1250px) {
+
+  .wind-speed {
+    left: 20px;
+  }
+  
+  .feels-like {
+    right: 20px;
+  }
+
+  .humidity {
+    left: 15px;
+  } 
+
+}
+
+@media screen and (max-width: 1100px) {
+
+  .coordinates {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 900px) {
+
+  .wind-speed {
+    display: none;
+  }
+  
+  .feels-like {
+    display: none;
+  }
+
+  .humidity {
+    display: none;
+  } 
+
+
 }

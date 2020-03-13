@@ -18,8 +18,9 @@ function App() {
       .then(result => {
         console.log(result);
         setWeather(result);
-        setQuery("");
+        setQuery('');
       })
+      .catch(err => { console.log(err) });
     }
     else {}
   }
@@ -39,7 +40,7 @@ function App() {
 
 
   return (
-    <div className={(typeof weather.main != "undefined") ? ((weather.main.temp > 16) ? 'app warm' : 'app') : 'app'}>
+    <div className={(typeof weather.main != "undefined") ? ((weather.main.temp > 16) ? "app-warm" : "app-cold") : "app"}>
      <main>
 
        <div className="search-box">
@@ -54,17 +55,30 @@ function App() {
        </div>
 
        {(typeof weather.main != "undefined") ? (
-         <div>
+         <div className="info-box">
             <div className="location-box">
               <div className="location">{weather.name}, {weather.sys.country}</div>
               <div className="date">{dateBuilder(new Date())}</div>
             </div>
 
             <div className="weather-box">
+              <div className="top-container">
+                <div className="hi-stats">H: {Math.round(weather.main.temp_max)}</div> 
+                <div className="celcius">°C</div>
+                <div className="lo-stats">L: {Math.round(weather.main.temp_min)}</div>
+              </div>
+  
+              <div className="coordinates">Lat: {Math.round(weather.coord.lat * 10) / 10} | Lon {Math.round(weather.coord.lon * 10) / 10}</div>
               <div className="temp">
                 {Math.round(weather.main.temp)}
               </div>
-              <div className="weather">{weather.weather}}</div>
+              <div className="humidity">Humidity: {weather.main.humidity}%</div>
+
+              <div className="bottom-container">
+                <div className="wind-speed">Wind: {weather.wind.speed}KPH</div>
+                <div className="weather">{weather.weather[0].main}</div>
+                <div className="feels-like">Feels Like: {Math.round(weather.main.feels_like)}</div>
+              </div>
             </div>
          </div>
        ) : ("")}
