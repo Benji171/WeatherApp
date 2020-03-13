@@ -13,10 +13,10 @@ function App() {
     "August","September","October","November","December"];
     let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-    let day = days[dateBuilder.getDay()];
+    let day = days[d.getDay()];
     let date = d.getDate();
     let month = months[d.getMonth()];
-    let year = d.getFullYear;
+    let year = d.getFullYear();
 
     return `${day} ${date} ${month} ${year}`
   }
@@ -36,6 +36,11 @@ function App() {
        <div className="location-box">
          <div className="location">New York</div>
          <div className="date">{dateBuilder(new Date())}</div>
+       </div>
+
+       <div>
+         <div className="temp">15</div>
+         <div className="weather">Sunny</div>
        </div>
      </main>
     </div>
