@@ -121,6 +121,7 @@ main {
 .celcius {
   font-size: 20px;
   padding-right: 8px;
+  margin-top: 1px;
 }
 
 .temp {

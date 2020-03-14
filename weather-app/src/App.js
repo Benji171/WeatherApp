@@ -6,7 +6,7 @@ const weatherApi = {
   base: 'https://api.openweathermap.org/data/2.5/'
 }
 
-const newaApi = {
+const newsApi = {
   key: '156880819301436db1e992e36ecc548e',
   base: 'http://newsapi.org/v2/'
 }
@@ -21,7 +21,7 @@ function App() {
     if (e.key === "Enter") {
       Promise.all([
         fetch(`${weatherApi.base}weather?q=${query}&units=metric&APPID=${weatherApi.key}`).then(value => value.json()),
-        fetch(`${newaApi.base}everything?q=${query}&from=2020-02-13&sortBy=publishedAt&apiKey=${newaApi.key}`).then(value => value.json())
+        fetch(`${newsApi.base}everything?q=${query}&from=2020-02-13&sortBy=publishedAt&apiKey=${newsApi.key}`).then(value => value.json())
       ]).then((res) => {
           console.log(res);
           setWeather(res[0]);
@@ -35,28 +35,6 @@ function App() {
 
   console.log("Weather", weather);
   console.log("News", news);
-
-  // const getNews = e => {
-  //   if (e.key === "Enter") {
-  //     fetch(`${newaApi.base}everything?q=${query}&from=2020-02-13&sortBy=publishedAt&apiKey=${newaApi.key}`)
-  //     .then(res => res.json())
-  //     .then(res => {
-  //       console.log("News Api", res);
-  //       setNews(res);
-  //     })
-  //     .catch(err => { console.log(err) });
-  //   }
-  //   else {}
-  // }
-
-  // useEffect(() => {
-  //   fetch(`${newaApi.base}everything?q=${query}&from=2020-02-13&sortBy=publishedAt&apiKey=${newaApi.key}`)
-  //   .then(res => res.json())
-  //   .then(res => {
-  //     console.log("News Api", res);
-  //     setNews(res);
-  //   })
-  // }, [weather])
 
   const dateBuilder = (d) => {
     let months= ["January","February","March","April","May","June","July",
@@ -96,9 +74,9 @@ function App() {
 
             <div className="weather-box">
               <div className="top-container">
-                <div className="hi-stats">H {Math.round(weather.main.temp_max)}</div> 
+                <div className="hi-stats">H {Math.round(weather.main.temp_max)}°</div> 
                 <div className="celcius">°C</div>
-                <div className="lo-stats">L {Math.round(weather.main.temp_min)}</div>
+                <div className="lo-stats">L {Math.round(weather.main.temp_min)}°</div>
               </div>
   
               <div className="coordinates">Lat: {Math.round(weather.coord.lat * 10) / 10} | Lon {Math.round(weather.coord.lon * 10) / 10}</div>
@@ -110,7 +88,7 @@ function App() {
               <div className="bottom-container">
                 <div className="wind-speed">Wind: {weather.wind.speed}KPH</div>
                 <div className="weather">{weather.weather[0].main}</div>
-                <div className="feels-like">Feels Like: {Math.round(weather.main.feels_like)}</div>
+                <div className="feels-like">Feels Like: {Math.round(weather.main.feels_like)}°</div>
               </div>
             </div>
          </div>
