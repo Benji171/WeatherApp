@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import { Container, Row } from "reactstrap";
+import NewsCard from ".//components/newsCard"
 
 const weatherApi = {
   key: '4f202515b8b40e20a36d3096794eeaa3',
@@ -11,28 +13,29 @@ const newsApi = {
   base: 'http://newsapi.org/v2/'
 }
 
-function App() {
-
+function App () {
+  const [background, setBackground] = useState('')
   const [query, setQuery] = useState('');
   const [weather, setWeather] = useState('');
-  const [news, setNews] = useState([])
+  const [news, setNews] = useState([]);
 
-  const search = e => {
+  const search = (e, day, month, year) => {
     if (e.key === "Enter") {
       Promise.all([
         fetch(`${weatherApi.base}weather?q=${query}&units=metric&APPID=${weatherApi.key}`).then(value => value.json()),
-        fetch(`${newsApi.base}everything?q=${query}&from=2020-02-13&sortBy=publishedAt&apiKey=${newsApi.key}`).then(value => value.json())
+        fetch(`${newsApi.base}everything?q=${query}&from=${year}-${month}-${day}&sortBy=publishedAt&apiKey=${newsApi.key}`).then(value => value.json())
       ]).then((res) => {
           console.log(res);
           setWeather(res[0]);
-          setNews(res[1]);
+          setNews(res[1].articles);
+          setBackground(`app-${res[0].weather[0].main.toLowerCase()}`);
           setQuery('');
       })
       .catch(err => { console.log(err) });
     }
     else {}
   }
-
+  console.log(background);
   console.log("Weather", weather);
   console.log("News", news);
 
@@ -49,9 +52,14 @@ function App() {
     return `${day} ${date} ${month} ${year}`
   }
 
+  // function degreeToggle () {
+  //   if (document.querySelector("celcius").innerHtml = "°C") {
+  //       document.querySelectorAll("tempSwitch").innerHtml + 273;
+  //   }
+  // }
 
   return (
-    <div className={(typeof weather.main != "undefined") ? ((weather.main.temp > 16) ? "app-warm" : "app-cold") : "app"}>
+    <div  className={background}>
      <main>
 
        <div className="search-box">
@@ -72,7 +80,7 @@ function App() {
               <div className="date">{dateBuilder(new Date())}</div>
             </div>
 
-            <div className="weather-box">
+            <div className="weather-box" onClick="degreeToggle">
               <div className="top-container">
                 <div className="hi-stats">H {Math.round(weather.main.temp_max)}°</div> 
                 <div className="celcius">°C</div>
@@ -95,6 +103,27 @@ function App() {
        ) : ("")}
 
      </main>
+
+     <Container>
+      <Row>
+        {news.map(article => {
+          if (news.indexOf(article) < 6) {
+            return (
+              <NewsCard
+                title = {article.title}
+                episode = {article.description}
+                url = {article.url}
+                image = {article.urlToImage}
+                source = {article.author}
+              />
+            )
+          }
+          })}
+      </Row>
+    </Container>
+  );
+}
+
     </div>
   );
 }
