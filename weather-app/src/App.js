@@ -10,7 +10,7 @@ const weatherApi = {
 
 const newsApi = {
   key: '156880819301436db1e992e36ecc548e',
-  base: 'http://newsapi.org/v2/'
+  base: 'https://newsapi.org/v2/'
 }
 
 function App () {
