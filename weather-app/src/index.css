@@ -19,6 +19,7 @@ body {
 .app-clear {
   background-image: url("./assets/clear-bg.jpg");
   background-size: cover;
+  background-repeat: repeat-y;
   background-position: bottom;
   transition: 0.2s ease-out;
   transition: 0.2s ease-in;
@@ -28,6 +29,7 @@ body {
 .app-clouds {
   background-image: url("./assets/clouds-bg.jpg");
   background-size: cover;
+  background-repeat: repeat;
   background-position: bottom;
   transition: 0.2s ease-out;
   transition: 0.2s ease-in;
