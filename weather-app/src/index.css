@@ -8,6 +8,15 @@ body {
   font-family: 'montseratt' ,sans-serif;
 }
 
+.app-start {
+  background-image: url("./assets/start-bg.jpg");
+  background-size: cover;
+  background-position: top;
+  transition: 0.2s ease-out;
+  transition: 0.2s ease-in;
+  background-attachment: fixed;
+}
+
 .app-rain {
   background-image: url("./assets/rain-bg.jpg");
   background-size: cover;
@@ -19,7 +28,6 @@ body {
 .app-clear {
   background-image: url("./assets/clear-bg.jpg");
   background-size: cover;
-  background-repeat: repeat-y;
   background-position: bottom;
   transition: 0.2s ease-out;
   transition: 0.2s ease-in;
@@ -37,6 +45,14 @@ body {
 
 .app-thunderstorm {
   background-image: url("./assets/thunderstorm-bg.jpg");
+  background-size: cover;
+  background-position: bottom;
+  transition: 0.2s ease-out;
+  transition: 0.2s ease-in;
+}
+
+.app-mist {
+  background-image: url("./assets/mist-bg.jpg");
   background-size: cover;
   background-position: bottom;
   transition: 0.2s ease-out;
@@ -304,6 +320,7 @@ main {
   .humidity {
     display: none;
   } 
+
 
 
 }

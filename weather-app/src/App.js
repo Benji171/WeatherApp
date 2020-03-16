@@ -14,7 +14,7 @@ const newsApi = {
 }
 
 function App () {
-  const [background, setBackground] = useState('')
+  const [background, setBackground] = useState('app-start')
   const [query, setQuery] = useState('');
   const [weather, setWeather] = useState('');
   const [news, setNews] = useState([]);
