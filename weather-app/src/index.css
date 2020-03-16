@@ -22,6 +22,7 @@ body {
   background-position: bottom;
   transition: 0.2s ease-out;
   transition: 0.2s ease-in;
+  background-attachment: fixed;
 }
 
 .app-clouds {
@@ -111,7 +112,7 @@ main {
   height: 175px;
   width: 40%;
   display: inline-block;
-  margin: 30px auto;
+  margin: 10px;
   background-color: rgba(225, 225, 225, 0.2);
   border-radius: 16px;
   text-align: center;
@@ -138,6 +139,7 @@ main {
   font-size: 20px;
   padding-right: 8px;
   margin-top: 1px;
+  margin: auto;
 }
 
 .temp {
@@ -213,25 +215,36 @@ main {
 
 .top-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .card-div {
   width: 100%;
   position: absolute;
-  bottom: -50px;
+  bottom: 10px;
+  height: 200px;
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+ 
   
-  
+}
+
+.card-a {
+  text-decoration: none;
 }
 
 .news-card {
     height: 200px;
-    width: 30%;
+    width: 300px;
+    text-decoration: none;
     background-color: rgba(225, 225, 225, 0.2);
     border-radius: 16px;
     text-align: center;
   
-    padding: 15px, 25px;
+    padding: 10px;
   
     color: #fff;
   
@@ -241,15 +254,17 @@ main {
 }
 
 .card-img {
-  width: 300px;
+  width: 200px;
   height: 100px;
   border-radius: 16px;
+  text-align: center;
+  box-shadow: 3px 6px rgba(0, 0, 0, 0.2);
+  margin-top: 5px;
+  margin-bottom: 5px;
+  position: relative;
+  top: 5px;
 }
 
-.card-desc {
-  position: absolute;
-  bottom: 90px;
-}
 
 @media screen and (max-width: 1250px) {
 

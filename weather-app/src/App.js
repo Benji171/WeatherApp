@@ -104,25 +104,23 @@ function App () {
 
      </main>
 
-     <Container>
-      <Row>
+     <Container className="card-div">
         {news.map(article => {
-          if (news.indexOf(article) < 6) {
+          if (news.indexOf(article) < 3) {
             return (
-              <NewsCard
-                title = {article.title}
-                episode = {article.description}
-                url = {article.url}
-                image = {article.urlToImage}
-                source = {article.author}
-              />
+           
+                <NewsCard
+                  title = {article.title}
+                  episode = {article.description}
+                  url = {article.url}
+                  image = {article.urlToImage}
+                  source = {article.author}
+                />
+           
             )
           }
           })}
-      </Row>
     </Container>
-  );
-}
 
     </div>
   );
