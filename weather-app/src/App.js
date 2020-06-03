@@ -23,11 +23,9 @@ function App () {
     if (e.key === "Enter") {
       Promise.all([
         fetch(`${weatherApi.base}weather?q=${query}&units=metric&APPID=${weatherApi.key}`).then(value => value.json()),
-        fetch(`${newsApi.base}everything?q=${query}&from=${year}-${month}-${day}&sortBy=publishedAt&apiKey=${newsApi.key}`).then(value => value.json())
       ]).then((res) => {
           console.log(res);
           setWeather(res[0]);
-          setNews(res[1].articles);
           setBackground(`app-${res[0].weather[0].main.toLowerCase()}`);
           setQuery('');
       })
@@ -103,24 +101,6 @@ function App () {
        ) : ("")}
 
      </main>
-
-     <Container className="card-div">
-        {news.map(article => {
-          if (news.indexOf(article) < 3) {
-            return (
-           
-                <NewsCard
-                  title = {article.title}
-                  episode = {article.description}
-                  url = {article.url}
-                  image = {article.urlToImage}
-                  source = {article.author}
-                />
-           
-            )
-          }
-          })}
-    </Container>
 
     </div>
   );
