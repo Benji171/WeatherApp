@@ -9,7 +9,7 @@ const weatherApi = {
 }
 
 const newsApi = {
-  key: '156880819301436db1e992e36ecc548e',
+  key: 'dc9d8ec259454ec7bad3c9b219ddc773',
   base: 'https://newsapi.org/v2/'
 }
 
